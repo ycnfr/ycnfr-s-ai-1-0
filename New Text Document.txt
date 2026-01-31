@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YCNFR's AI</title>
+    <style>
+        body { font-family: 'Courier New', Courier, monospace; background: #0f0f0f; color: #00ff00; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        #chat-container { width: 400px; background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        #messages { height: 300px; overflow-y: auto; margin-bottom: 10px; padding: 10px; border: 1px solid #444; }
+        .user-msg { color: #fff; margin: 5px 0; }
+        .ai-msg { color: #00ff00; margin: 5px 0; font-weight: bold; }
+        input { width: 80%; padding: 10px; background: #222; border: 1px solid #444; color: white; }
+        button { padding: 10px; background: #00ff00; border: none; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>YCNFR's AI</h2>
+    <div id="chat-container">
+        <div id="messages"></div>
+        <input type="text" id="userInput" placeholder="Ask something...">
+        <button onclick="askAI()">Send</button>
+    </div>
+
+    <script>
+        let questionCount = 0;
+
+        function askAI() {
+            const input = document.getElementById('userInput');
+            const messages = document.getElementById('messages');
+            
+            if (input.value.trim() === "") return;
+
+            // Show User Question
+            messages.innerHTML += `<div class="user-msg">You: ${input.value}</div>`;
+            
+            questionCount++;
+            let response = "tnak";
+
+            // If asked more than 3 times, change response
+            if (questionCount > 3) {
+                response = "mtrohch tnik mok?";
+            }
+
+            // Show AI Response
+            setTimeout(() => {
+                messages.innerHTML += `<div class="ai-msg">YCNFR: ${response}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
